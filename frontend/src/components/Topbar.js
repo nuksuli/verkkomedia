@@ -4,7 +4,7 @@ import './topbar.css';
 const Topbar = () => {
     return (
         <div className="topbar">
-            <h1>Verkkomedia</h1>
+            <h1 align="center">Verkkomedia</h1>
         </div>
     )
 }

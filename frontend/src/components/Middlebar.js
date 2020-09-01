@@ -1,9 +1,11 @@
 import React from "react";
+import "./middlebar.css"
+import NewsCard from "./NewsCard"
 
 const Middlebar = () => {
     return (
-        <div>
-            <h1>Verkkomedia</h1>
+        <div className="middlebar">
+            <NewsCard></NewsCard>
         </div>
     )
 }

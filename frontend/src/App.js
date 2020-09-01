@@ -1,8 +1,6 @@
 import React from 'react';
 import Topbar from "./components/Topbar"
-import Middlebar from "./components/Middlebar"
-import Leftbar from "./components/Leftbar"
-import Rightbar from "./components/Rightbar"
+import Content from "./components/Content"
 
 
 
@@ -10,9 +8,7 @@ const App = () => {
     return (
         <div>
             <Topbar />
-            <Rightbar />
-            <Middlebar />
-            <Leftbar />
+            <Content />
         </div>
     )
 }
