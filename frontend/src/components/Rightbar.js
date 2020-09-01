@@ -2,7 +2,7 @@ import React from "react";
 import "./rightbar.css"
 const Rightbar = () => {
     return (
-        <div className="Rightbar">
+        <div className="rightbar">
             <h1>Verkkomedia</h1>
         </div>
     )
