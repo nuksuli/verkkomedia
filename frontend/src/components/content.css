@@ -3,8 +3,12 @@
     height: 100%;
 }
 
-.left, .right {
+.left{
     width: 20%;
+}
+
+.right{
+    float: right;
 }
 
 .middle {
