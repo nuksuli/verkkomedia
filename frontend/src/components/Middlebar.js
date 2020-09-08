@@ -7,7 +7,7 @@ const Middlebar = ({ data }) => {
     return (
         <div className="middlebar">
             {
-                data.map((news) => (
+                data.slice(0).reverse().map((news) => (
                     <NewsCard
                         img={news.img}
                         id={news.id}

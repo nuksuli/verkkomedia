@@ -6,28 +6,32 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
+import { spacing } from '@material-ui/system';
+import { makeStyles } from "@material-ui/core";
+import "./link.css"
 
-const news =
-{
-    "id": 1,
-    "title": "Taas uusi mielenilmaus Malmössä",
-    "ingress": "Vii-konlopun aikana järjestetyt mielenilmaukset keräsivät tuhansia ihmisiä osoittamaan mieltään rasismia vastaan."
-}
 
+const useStyles = makeStyles({
+    root: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: 8,
+        maxWidth: 650,
+    },
+})
 
 const NewsCard = ({ title, ingress, id, img }) => {
+    const classes = useStyles()
     return (
         <div>
-            <Link to={`/${id}`}>
-                <Card>
+            <Card className={classes.root}>
+                <Link className="link" to={`/${id}`} style={{ textDecoration: "none" }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
-                            height="140"
+                            height="300"
                             image={img}
                             alt="test"
                         />
@@ -40,8 +44,8 @@ const NewsCard = ({ title, ingress, id, img }) => {
                             </Typography>
                         </CardContent>
                     </CardActionArea>
-                </Card>
-            </Link>
+                </Link>
+            </Card>
         </div>
     )
 }
