@@ -1,19 +1,21 @@
-import React from "react";
+import React from 'react'
 import "./middlebar.css"
 import NewsCard from "./NewsCard"
 
-const Middlebar = (data) => {
-    const obj = data
-    const obj2 = JSON.parse(data)
-
+const Middlebar = ({ data }) => {
+    console.log(data[1].id)
     return (
         <div className="middlebar">
             {
-                obj.map(o =>
+                data.map((news) => (
                     <NewsCard
-                        title={o.title}
-                        ingress={o.ingress}
+                        img={news.img}
+                        id={news.id}
+                        title={news.title}
+                        ingress={news.ingress}
                     />
+                )
+
                 )
             }
         </div >

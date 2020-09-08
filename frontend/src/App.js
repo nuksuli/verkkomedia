@@ -18,7 +18,7 @@ const newsList = [
         id: 1,
         title: "Taas uusi mielenilmaus Malmössä",
         ingress: "Viikonlopun aikana järjestetyt mielenilmaukset keräsivät tuhansia ihmisiä osoittamaan mieltään rasismia vastaan.",
-        img: "/images/malmo.jpeg",
+        img: "/images/malmo.jpg",
         text: "Siellä ne riehuu taas saatana",
         author: "Jonne Ylilauta"
     },
@@ -40,7 +40,7 @@ const App = () => {
             </div>
             <Switch>
                 <Route path="/:id">
-                    <NewsPage data={newsList} />
+                    <NewsPage />
                 </Route>
                 <Route path="/">
                     <Content data={newsList} />

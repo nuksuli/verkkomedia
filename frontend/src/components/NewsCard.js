@@ -19,16 +19,16 @@ const news =
 }
 
 
-const NewsCard = (title, ingress) => {
+const NewsCard = ({ title, ingress, id, img }) => {
     return (
         <div>
-            <Link to={`/${news.id}`}>
+            <Link to={`/${id}`}>
                 <Card>
                     <CardActionArea>
                         <CardMedia
                             component="img"
                             height="140"
-                            image="/images/matti.jpg"
+                            image={img}
                             alt="test"
                         />
                         <CardContent>
