@@ -6,11 +6,7 @@ import NewsPage from "./components/NewsPage.js"
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link,
-    Redirect,
-    useParams,
-    useHistory,
+    Route
 } from "react-router-dom"
 
 const newsList = [
@@ -29,21 +25,6 @@ const newsList = [
         img: "/images/matti.jpg",
         text: "Tänään on kolme litraa marjaa maistunut. Nyt alkaa riittää, Nykänen kertoi Savon Sanomille, mutta nappasi kuulemma vielä yhden mansikan suuhunsa. Nykänen on myös hankkinut herkkuaan jo talvenkin varalle. - Takakontissa odottelee laatikko perkaamista. Huomenna laitan viipaleiksi ja pakkaseen. Aamuisin saa sitten sekoittaa niitä puuron joukkoon, Nykänen kertoi Savon Sanomille.",
         author: "Pekka Sihtoinen"
-    },
-    {
-        id: 2,
-        title: "Matti Nykänen söi 5 miljoonaa litraa mansikoita",
-        ingress: "Matti Nykänen söi mansikoita",
-        img: "/images/matti.jpg",
-        text: "Tänään on kolme litraa marjaa maistunut. Nyt alkaa riittää, Nykänen kertoi Savon Sanomille, mutta nappasi kuulemma vielä yhden mansikan suuhunsa. Nykänen on myös hankkinut herkkuaan jo talvenkin varalle. - Takakontissa odottelee laatikko perkaamista. Huomenna laitan viipaleiksi ja pakkaseen. Aamuisin saa sitten sekoittaa niitä puuron joukkoon, Nykänen kertoi Savon Sanomille.",
-        author: "Pekka Sihtoinen"
-    }, {
-        id: 2,
-        title: "Matti Nykänen söi 5 miljoonaa litraa mansikoita",
-        ingress: "Matti Nykänen söi mansikoita",
-        img: "/images/matti.jpg",
-        text: "Tänään on kolme litraa marjaa maistunut. Nyt alkaa riittää, Nykänen kertoi Savon Sanomille, mutta nappasi kuulemma vielä yhden mansikan suuhunsa. Nykänen on myös hankkinut herkkuaan jo talvenkin varalle. - Takakontissa odottelee laatikko perkaamista. Huomenna laitan viipaleiksi ja pakkaseen. Aamuisin saa sitten sekoittaa niitä puuron joukkoon, Nykänen kertoi Savon Sanomille.",
-        author: "Pekka Sihtoinen"
     }
 ]
 
@@ -55,7 +36,7 @@ const App = () => {
             </div>
             <Switch>
                 <Route path="/:id">
-                    <NewsPage data={newsList} />
+                    <NewsPage newsList={newsList} />
                 </Route>
                 <Route path="/">
                     <Content data={newsList} />

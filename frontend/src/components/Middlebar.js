@@ -3,7 +3,6 @@ import "./middlebar.css"
 import NewsCard from "./NewsCard"
 
 const Middlebar = ({ data }) => {
-    console.log(data[1].id)
     return (
         <div className="middlebar">
             {
