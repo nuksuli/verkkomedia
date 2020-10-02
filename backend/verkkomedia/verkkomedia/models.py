@@ -81,5 +81,7 @@ class News(models.Model):
     """Database model for news"""
     email = models.EmailField(max_length=255)
     author = models.CharField(max_length=255)
-
-    objects = NewsManager()
+    header = models.CharField(max_length=255)
+    lead = models.CharField(max_length=255)
+    text = models.CharField(max_length=10000)
+    public = models.BooleanField()
