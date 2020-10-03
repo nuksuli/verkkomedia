@@ -15,8 +15,8 @@ const newsList = [
         title: "Taas uusi mielenilmaus Malmössä",
         ingress: "Viikonlopun aikana järjestetyt mielenilmaukset keräsivät tuhansia ihmisiä osoittamaan mieltään rasismia vastaan.",
         img: "/images/malmo.jpg",
-        text: "Siellä ne riehuu taas saatana",
-        author: "Jonne Ylilauta"
+        text: "Hurjaa on meno",
+        author: "Minna Mallikas"
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ const newsList = [
         ingress: "Matti Nykänen söi mansikoita",
         img: "/images/matti.jpg",
         text: "Tänään on kolme litraa marjaa maistunut. Nyt alkaa riittää, Nykänen kertoi Savon Sanomille, mutta nappasi kuulemma vielä yhden mansikan suuhunsa. Nykänen on myös hankkinut herkkuaan jo talvenkin varalle. - Takakontissa odottelee laatikko perkaamista. Huomenna laitan viipaleiksi ja pakkaseen. Aamuisin saa sitten sekoittaa niitä puuron joukkoon, Nykänen kertoi Savon Sanomille.",
-        author: "Pekka Sihtoinen"
+        author: "Mikko Mallikas"
     }
 ]
 
