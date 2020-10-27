@@ -70,7 +70,7 @@ class NewsManager(models.Manager):
             raise ValueError("text not defined")
 
         email = self.normalize_email(email)
-        news = self.model(email, author, header, lead, text, public)
+        news = self.model(email=email, author=author, header=header, lead=lead, text=text, public=public)
 
         news.save(using=self._db)
 
@@ -79,6 +79,8 @@ class NewsManager(models.Manager):
 
 class News(models.Model):
     """Database model for news"""
+
+    objects = NewsManager()
     email = models.EmailField(max_length=255)
     author = models.CharField(max_length=255)
     header = models.CharField(max_length=255)

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'verkkomedia'
+    'verkkomedia_api'
 ]
 
 MIDDLEWARE = [
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'verkkomedia.urls'
+ROOT_URLCONF = 'verkkomedia_api.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'verkkomedia.wsgi.application'
+WSGI_APPLICATION = 'verkkomedia_api.wsgi.application'
 
 
 # Database
@@ -122,4 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'verkkomedia.UserProfile'
+AUTH_USER_MODEL = 'verkkomedia_api.UserProfile'
