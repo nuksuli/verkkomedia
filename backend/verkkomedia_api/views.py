@@ -7,11 +7,15 @@ from rest_framework import filters
 
 from verkkomedia_api import serializers
 from verkkomedia_api import models
+from verkkomedia_api import permissions
 
 
 class NewsViewSet(viewsets.ModelViewSet):
     """Handle creating and updating news"""
-    serializer_class = serializers.NewsSerializer
     queryset = models.News.objects.all()
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('header', 'author',)
+    serializer_class = serializers.NewsSerializer
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating news"""
+    queryset = models.UserProfile.objects.all()
+    serializer_class = serializers.UserProfileSerializer

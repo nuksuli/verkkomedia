@@ -59,7 +59,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 class NewsManager(models.Manager):
     """Manager for news"""
 
-    def create_news(self, email, author, header, lead, text, public=False):
+    def create_news(self, email, author, header, lead, text, public):
+        """Create a News profile"""
         if not email:
             raise ValueError("Email not defined")
         if not author:
@@ -68,8 +69,7 @@ class NewsManager(models.Manager):
             raise ValueError("Lead not defined")
         if not text:
             raise ValueError("text not defined")
-
-        email = self.normalize_email(email)
+        
         news = self.model(email=email, author=author, header=header, lead=lead, text=text, public=public)
 
         news.save(using=self._db)
@@ -80,10 +80,26 @@ class NewsManager(models.Manager):
 class News(models.Model):
     """Database model for news"""
 
-    objects = NewsManager()
     email = models.EmailField(max_length=255)
     author = models.CharField(max_length=255)
     header = models.CharField(max_length=255)
     lead = models.CharField(max_length=255)
     text = models.CharField(max_length=10000)
-    public = models.BooleanField()
+    public = models.BooleanField(default=False)
+
+    REQUIRED_FIELDS = ['author']
+    USERNAME_FIELD = 'email'
+
+
+    objects = NewsManager()
+    def get_full_name(self):
+        """Retrieve full name of user"""
+        return self.author
+
+    def get_short_name(self):
+        """retrieve short name of user"""
+        return self.author
+
+    def __str__(self):
+        """Return string representation of name"""
+        return self.email
