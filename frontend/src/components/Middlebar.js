@@ -8,9 +8,9 @@ const Middlebar = ({ data }) => {
             {
                 data.slice(0).reverse().map((news) => (
                     <NewsCard
-                        img={news.img}
+                        key={news.id}
                         id={news.id}
-                        title={news.title}
+                        title={news.header}
                         ingress={news.ingress}
                     />
                 )

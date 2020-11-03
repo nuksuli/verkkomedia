@@ -22,19 +22,13 @@ const useStyles = makeStyles({
     },
 })
 
-const NewsCard = ({ title, ingress, id, img }) => {
+const NewsCard = ({ title, ingress, id }) => {
     const classes = useStyles()
     return (
         <div>
             <Card className={classes.root}>
                 <Link className="link" to={`/${id}`} style={{ textDecoration: "none" }}>
                     <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            height="300"
-                            image={img}
-                            alt="test"
-                        />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
                                 {title}

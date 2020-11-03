@@ -7,15 +7,13 @@ import {
 
 const Topbar = () => {
     const [weather, setWeather] = useState({})
-    useEffect(() => {
+    /**useEffect(() => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=Turku,fi&appid=2a13da627b2ce9de65e19e0e66a1adf1`)
             .then(res => res.json())
             .then(res => {
                 setWeather(res)
-                console.log(res)
             })
-    }, [])
-    console.log(weather.weather)
+    }, []) **/
     return (
         <div className="topbar">
             <h1 width="200px" align="center">

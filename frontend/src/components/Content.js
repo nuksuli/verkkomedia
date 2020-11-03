@@ -4,15 +4,14 @@ import Rightbar from "./Rightbar"
 import Leftbar from "./Leftbar"
 import Middlebar from "./Middlebar"
 
-const Content = (newsList) => {
-
+const Content = ({ newsList }) => {
     return (
         <div>
             <div className="col left">
                 <Leftbar />
             </div>
             <div className="col middle">
-                <Middlebar data={newsList.data} />
+                <Middlebar data={newsList} />
             </div>
             <div className="col right">
                 <Rightbar />

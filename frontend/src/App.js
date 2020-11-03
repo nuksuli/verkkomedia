@@ -1,34 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Topbar from "./components/Topbar"
 import Content from "./components/Content"
 import NewsPage from "./components/NewsPage.js"
+import axios from 'axios'
 
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom"
+import NewsCard from './components/NewsCard';
 
-const newsList = [
-    {
-        id: 1,
-        title: "Taas uusi mielenilmaus Malmössä",
-        ingress: "Viikonlopun aikana järjestetyt mielenilmaukset keräsivät tuhansia ihmisiä osoittamaan mieltään rasismia vastaan.",
-        img: "/images/malmo.jpg",
-        text: "Hurjaa on meno",
-        author: "Minna Mallikas"
-    },
-    {
-        id: 2,
-        title: "Matti Nykänen söi 5 miljoonaa litraa mansikoita",
-        ingress: "Matti Nykänen söi mansikoita",
-        img: "/images/matti.jpg",
-        text: "Tänään on kolme litraa marjaa maistunut. Nyt alkaa riittää, Nykänen kertoi Savon Sanomille, mutta nappasi kuulemma vielä yhden mansikan suuhunsa. Nykänen on myös hankkinut herkkuaan jo talvenkin varalle. - Takakontissa odottelee laatikko perkaamista. Huomenna laitan viipaleiksi ja pakkaseen. Aamuisin saa sitten sekoittaa niitä puuron joukkoon, Nykänen kertoi Savon Sanomille.",
-        author: "Mikko Mallikas"
-    }
-]
+
 
 const App = () => {
+    const [newsList, setNewsList] = useState([])
+    useEffect(() => {
+        try {
+            async function fetchNews() {
+                let response = await axios.get('http://127.0.0.1:8000/api/news/')
+                response = await response
+                setNewsList(response.data)
+            }
+            fetchNews()
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }, [])
     return (
         <Router>
             <div>
@@ -36,10 +35,12 @@ const App = () => {
             </div>
             <Switch>
                 <Route path="/:id">
-                    <NewsPage newsList={newsList} />
+                    <NewsPage />
                 </Route>
                 <Route path="/">
-                    <Content data={newsList} />
+                    <Content
+                        newsList={newsList}
+                    />
                 </Route>
             </Switch>
         </Router>

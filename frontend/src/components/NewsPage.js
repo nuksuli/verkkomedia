@@ -1,15 +1,34 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import axios from 'axios'
 
 
-const NewsPage = ({ newsList }) => {
+const NewsPage = () => {
+    const [news, setNews] = useState([])
     const { id } = useParams()
-    const news = newsList.find(n => n.id === Number(id))
+    useEffect(() => {
+        try {
+            async function fetchNews() {
+                let response = await axios.get(`http://127.0.0.1:8000/api/news/${id}/`)
+                response = await response
+                console.log(response.data)
+                setNews(response.data)
+            }
+            fetchNews()
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }, [])
+    if (news.length === 0) {
+        return (
+            <h1>Sivua ei löydy</h1>
+        )
+    }
     return (
         <div>
-            <h1>{news.title}</h1>
-            <img src={news.img} alt="img"></img>
-            <p>{news.text}</p>
+            <h1>{news.header}</h1>
+            <p>{news.lead}</p>
         </div>
     )
 
