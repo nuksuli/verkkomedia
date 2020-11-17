@@ -16,3 +16,4 @@ yarn-error.log*
 *.env
 .vagrant/
 *.log
+__pycache__/
