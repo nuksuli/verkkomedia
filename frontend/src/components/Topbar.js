@@ -4,23 +4,23 @@ import {
     BrowserRouter as Router,
     Link
 } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+
 
 const Topbar = () => {
-    const [weather, setWeather] = useState({})
-    /**useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Turku,fi&appid=2a13da627b2ce9de65e19e0e66a1adf1`)
-            .then(res => res.json())
-            .then(res => {
-                setWeather(res)
-            })
-    }, []) **/
     return (
         <div className="topbar">
-            <h1 width="200px" align="center">
-                <Link to="/" style={{ textDecoration: "none" }}>Verkkomedia
+            <h1>
+                <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Verkkomedia
                 </Link>
             </h1>
-        </div>
+            <Link to="/post" style={{ color: "inherit", textDecoration: "none" }}>
+                <Button variant="contained" size="large" color="secondary">
+                    POST
+                </Button>
+            </Link>
+
+        </div >
     )
 }
 

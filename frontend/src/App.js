@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Topbar from "./components/Topbar"
 import Content from "./components/Content"
 import NewsPage from "./components/NewsPage.js"
+import PostPage from "./components/PostPage.js"
 import axios from 'axios'
 
 import {
@@ -9,7 +10,6 @@ import {
     Switch,
     Route
 } from "react-router-dom"
-import NewsCard from './components/NewsCard';
 
 
 
@@ -34,13 +34,16 @@ const App = () => {
                 <Topbar />
             </div>
             <Switch>
-                <Route path="/:id">
+                <Route path="/uutiset/:id">
                     <NewsPage />
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                     <Content
                         newsList={newsList}
                     />
+                </Route>
+                <Route path="/post">
+                    <PostPage />
                 </Route>
             </Switch>
         </Router>

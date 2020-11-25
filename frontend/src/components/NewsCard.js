@@ -27,7 +27,7 @@ const NewsCard = ({ title, ingress, id }) => {
     return (
         <div>
             <Card className={classes.root}>
-                <Link className="link" to={`/${id}`} style={{ textDecoration: "none" }}>
+                <Link className="link" to={`/uutiset/${id}`} style={{ textDecoration: "none" }}>
                     <CardActionArea>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">

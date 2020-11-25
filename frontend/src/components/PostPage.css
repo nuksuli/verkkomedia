@@ -1,0 +1,25 @@
+.postpage {
+    width: 100%;
+}
+
+.postpage form{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.postpage Input {
+    clear: left;
+    float: left;
+    position: static;
+    left: 30%;
+    margin: auto;
+    padding: 20px;
+}
+.textfield {
+    width: 60%;
+}
+.postpage Button {
+    margin: 10px;
+    background-color: #106adf;
+}

@@ -3,4 +3,15 @@
     float: top;
     height: 10vh;
     background-color: #69f0ae;
+    text-align: center;
+}
+.topbar h1 {
+    color: #106adf;
+    display: inline-block;
+    position: absolute;
+    
+}
+.topbar Button {
+    float: right;
+    margin: 10px;
 }
