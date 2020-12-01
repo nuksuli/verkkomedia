@@ -6,7 +6,7 @@ class NewsSerializer(serializers.ModelSerializer):
     """Serializer for News"""
     class Meta:
         model = models.News
-        fields = ('id', 'email', 'author', 'header', 'lead', 'text', 'public')
+        fields = ('id', 'email', 'author', 'header', 'lead', 'text')
 
     def create(self, validated_data):
         news = models.News.objects.create_news(
@@ -15,10 +15,9 @@ class NewsSerializer(serializers.ModelSerializer):
             header=validated_data['header'],
             text=validated_data['text'],
             lead=validated_data['lead'],
-            public=validated_data['public']
-
+            public=False
         )
-        
+
         return news
 
     def update(self, instance, validated_data):
@@ -27,8 +26,9 @@ class NewsSerializer(serializers.ModelSerializer):
         instance.header = validated_data.get('header', instance.header)
         instance.text = validated_data.get('text', instance.text)
         instance.lead = validated_data.get('lead', instance.lead)
-        
+
         return super().update(instance, validated_data)
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """Serializers a user profile object"""

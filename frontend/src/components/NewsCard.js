@@ -1,14 +1,11 @@
 import Card from "@material-ui/core/Card"
 import React from "react"
-import CardMedia from "@material-ui/core/CardMedia"
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {
-    BrowserRouter as Router,
     Link
 } from "react-router-dom";
-import { spacing } from '@material-ui/system';
 import { makeStyles } from "@material-ui/core";
 import "./link.css"
 

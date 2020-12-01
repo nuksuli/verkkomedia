@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './topbar.css';
 import {
-    BrowserRouter as Router,
     Link
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';

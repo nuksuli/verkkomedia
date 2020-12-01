@@ -65,12 +65,15 @@ class NewsManager(models.Manager):
             raise ValueError("Email not defined")
         if not author:
             raise ValueError("Author not defined")
+        if not header:
+            raise ValueError("Header not defined")
         if not lead:
             raise ValueError("Lead not defined")
         if not text:
             raise ValueError("text not defined")
-        
-        news = self.model(email=email, author=author, header=header, lead=lead, text=text, public=public)
+
+        news = self.model(email=email, author=author,
+                          header=header, lead=lead, text=text, public=False)
 
         news.save(using=self._db)
 
@@ -90,8 +93,8 @@ class News(models.Model):
     REQUIRED_FIELDS = ['author']
     USERNAME_FIELD = 'email'
 
-
     objects = NewsManager()
+
     def get_full_name(self):
         """Retrieve full name of user"""
         return self.author
