@@ -3,6 +3,9 @@ import { Input, TextField, Button } from '@material-ui/core';
 import "./PostPage.css"
 import { useState } from 'react'
 import axios from 'axios'
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import IconButton from '@material-ui/core/IconButton';
+
 
 
 const PostPage = () => {
@@ -16,6 +19,8 @@ const PostPage = () => {
     const [error, setError] = useState({
         email: false
     })
+    const [image, setImage] = useState([])
+    console.log(image.length)
 
     const handleChange = (event) => {
         const value = event.target.value
@@ -24,7 +29,6 @@ const PostPage = () => {
             ...data,
             [name]: value
         })
-        console.log(data)
         if (name === "email") {
             if (value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                 setError({
@@ -41,7 +45,28 @@ const PostPage = () => {
 
         }
     }
+    const handleImage = (event) => {
+        const image = event.target.files[0]
+        console.log(image.name)
+        setImage(image)
+    }
 
+    const InputText = () => {
+        if (image.length === 0) {
+            return (
+                <label>
+                    Lisää kuva uutiseesi.
+                </label>
+            )
+        }
+        else {
+            return (
+                <label>
+                    Kuva "{image.name}" lisätty
+                </label>
+            )
+        }
+    }
     const handlePost = (event) => {
         event.preventDefault()
         axios
@@ -105,8 +130,22 @@ const PostPage = () => {
                 >
                     SEND
                 </Button>
+                <input
+                    required
+                    className="disabledInput"
+                    accept="image/*"
+                    id="icon-button-file"
+                    type="file"
+                    onChange={handleImage}
+                />
+                <label htmlFor="icon-button-file">
+                    <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                    </IconButton>
+                </label>
+                <InputText />
             </form>
-        </div>
+        </div >
     )
 }
 
