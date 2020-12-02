@@ -13,7 +13,8 @@ const Middlebar = ({ data }) => {
                         key={news.id}
                         id={news.id}
                         title={news.header}
-                        ingress={news.ingress}
+                        ingress={news.lead}
+                        text={news.text}
                     />
                 ))}
         </div>
