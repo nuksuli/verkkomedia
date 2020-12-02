@@ -1,4 +1,4 @@
-.topbar{
+.topbar {
     overflow: hidden;
     float: top;
     height: 10vh;
@@ -8,10 +8,10 @@
 .topbar h1 {
     color: #106adf;
     display: inline-block;
-    position: absolute;
-    
 }
 .topbar Button {
-    float: right;
+    right: 0;
     margin: 10px;
+    margin-top: 20px;
+    position: absolute;
 }
