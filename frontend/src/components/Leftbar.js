@@ -1,8 +1,9 @@
 import React from "react";
+import "./leftbar.css"
 
 const Leftbar = () => {
     return (
-        <div>
+        <div className="leftbar">
         </div>
     )
 }

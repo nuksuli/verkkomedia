@@ -1,0 +1,7 @@
+.rightbar{
+    background-color: blue;
+    right: 0;
+    position: absolute;
+    width: 20%;
+    height: 90vh;
+}

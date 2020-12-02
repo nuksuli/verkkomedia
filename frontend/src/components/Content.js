@@ -6,16 +6,10 @@ import Middlebar from "./Middlebar"
 
 const Content = ({ newsList }) => {
     return (
-        <div>
-            <div className="col left">
-                <Leftbar />
-            </div>
-            <div className="col middle">
-                <Middlebar data={newsList} />
-            </div>
-            <div className="col right">
-                <Rightbar />
-            </div>
+        <div className="content">
+            <Leftbar />
+            <Middlebar data={newsList} />
+            <Rightbar />
         </div>
     )
 }

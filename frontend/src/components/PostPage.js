@@ -101,6 +101,7 @@ const PostPage = () => {
                 /><br />
                 <Button
                     type="submit"
+                    disabled={error.email}
                 >
                     SEND
                 </Button>
