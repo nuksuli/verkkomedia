@@ -2,11 +2,11 @@
     overflow: hidden;
     float: top;
     height: 10vh;
-    background-color: #69f0ae;
+    background-color: #20232a;
     text-align: center;
 }
 .topbar h1 {
-    color: #106adf;
+    color: #61dbfb;
     display: inline-block;
 }
 .topbar Button {
