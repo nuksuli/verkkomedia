@@ -19,3 +19,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """Handle creating and updating news"""
     queryset = models.UserProfile.objects.all()
     serializer_class = serializers.UserProfileSerializer
+
+class ImageViewSet(viewsets.ModelViewSet):
+    """Handle creating images"""
+    queryset = models.UserProfile.objects.all()
+    serializer_class = serializers.ImageSerializer

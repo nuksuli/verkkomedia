@@ -106,3 +106,34 @@ class News(models.Model):
     def __str__(self):
         """Return string representation of name"""
         return self.email
+
+
+class ImageManager(models.Manager):
+    def create_image(news, name, imagefile):
+        if not news:
+            raise ValueError("Parent news not defined")
+        if not name:
+            raise ValueError("Name not defined")
+        if not imagefile:
+            raise ValueError("Image not defined")
+        
+        image=self.model(news=news, name=name, imagefile=imagefile)
+
+        image.save(using=self._db)
+
+        return image
+
+
+class Image(models.Model):
+    news=models.OneToOneField(News,
+        on_delete=models.CASCADE
+        primary_key=True)
+    name=models.CharField(max_length=500)
+
+    
+    image=models.FileField(upload_to='images/', null=True, verbose_name="")
+
+    objects = ImageManager()
+
+    def __str__(self):
+        return self.name + ";" str(self.imagefile)

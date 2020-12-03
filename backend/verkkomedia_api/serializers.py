@@ -58,3 +58,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
             password = validated_data.pop('password')
             instance.set_password(password)
         return super().update(instance, validated_data)
+
+class ImageSerializer(serializers.ModelSerializer):
+    """Serializers a image object"""
+    class Meta:
+        model = models.Image
+        fields = ("name", "imagefile")
+    
+    
+    def create(self, validated_data):
+        image = models.Image.object.create_image(
+            name=validated_data['name'],
+            imagefile=validated_data['imagefile']
+        )
+
+        return image
+
