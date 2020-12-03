@@ -47,7 +47,6 @@ const PostPage = () => {
     const handleImage = (event) => {
         const image = event.target.files[0]
         setImage(image)
-        console.log(image)
     }
 
     const InputText = () => {
@@ -68,14 +67,18 @@ const PostPage = () => {
     }
     const handlePost = (event) => {
         event.preventDefault()
+        const form = new FormData()
+        form.append('email', data.email)
+        form.append('author', data.author)
+        form.append('header', data.header)
+        form.append('lead', data.lead)
+        form.append('text', data.text)
+        form.append('image', image)
         axios
-            .post("http://127.0.0.1:8000/api/news/", {
-                email: data.email,
-                author: data.author,
-                header: data.header,
-                lead: data.lead,
-                text: data.text,
-                image: image,
+            .post("http://127.0.0.1:8000/api/news/", form, {
+                headers: {
+                    'content-type': 'application/json'
+                }
             })
             .then(res => console.log(res))
     }

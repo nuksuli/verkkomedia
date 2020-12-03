@@ -21,7 +21,7 @@ const NewsPage = () => {
         }
     }, []);
     if (news.length === 0) {
-        return <h1 align="center">Uutista ei löydy</h1>;
+        return <h1 margin="auto">Uutista ei löydy</h1>;
     }
     return (
         <div>
