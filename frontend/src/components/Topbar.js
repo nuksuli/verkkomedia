@@ -15,7 +15,7 @@ const Topbar = () => {
                 </Link>
             </h1>
             <Link to="/post">
-                <Button variant="contained" size="large" color="seconday">
+                <Button variant="contained" size="large" color="secondary">
                     POST
                 </Button>
             </Link>
