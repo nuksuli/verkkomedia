@@ -59,7 +59,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 class NewsManager(models.Manager):
     """Manager for news"""
 
-    def create_news(self, email, author, header, lead, text, public):
+    def create_news(self, email, author, header, lead, text, image, public):
         """Create a News profile"""
         if not email:
             raise ValueError("Email not defined")
@@ -71,9 +71,11 @@ class NewsManager(models.Manager):
             raise ValueError("Lead not defined")
         if not text:
             raise ValueError("text not defined")
+        if not image:
+            raise ValueError("Image not definedS")
 
         news = self.model(email=email, author=author,
-                          header=header, lead=lead, text=text, public=False)
+                          header=header, lead=lead, text=text, image=image, public=False)
 
         news.save(using=self._db)
 
@@ -89,6 +91,7 @@ class News(models.Model):
     lead = models.CharField(max_length=255)
     text = models.CharField(max_length=10000)
     public = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='images/')
 
     REQUIRED_FIELDS = ['author']
     USERNAME_FIELD = 'email'

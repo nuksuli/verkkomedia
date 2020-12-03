@@ -1,8 +1,12 @@
 import React from 'react';
 import { Input, TextField, Button } from '@material-ui/core';
-import './PostPage.css';
-import { useState } from 'react';
-import axios from 'axios';
+import "./PostPage.css"
+import { useState } from 'react'
+import axios from 'axios'
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import IconButton from '@material-ui/core/IconButton';
+
+
 
 const PostPage = () => {
     const [data, setData] = useState({
@@ -14,7 +18,8 @@ const PostPage = () => {
     });
     const [error, setError] = useState({
         email: false
-    });
+    })
+    const [image, setImage] = useState(null)
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -42,17 +47,42 @@ const PostPage = () => {
                 });
             }
         }
-    };
+    }
+    const handleImage = (event) => {
+        const image = event.target.files[0]
+        setImage(image)
+    }
 
+    const InputText = () => {
+        if (image === null) {
+            return (
+                <label>
+                    Lisää kuva uutiseesi.
+                </label>
+            )
+        }
+        else {
+            return (
+                <label>
+                    Kuva "{image.name}" lisätty
+                </label>
+            )
+        }
+    }
     const handlePost = (event) => {
-        event.preventDefault();
+        event.preventDefault()
+        const form = new FormData()
+        form.append('email', data.email)
+        form.append('author', data.author)
+        form.append('header', data.header)
+        form.append('lead', data.lead)
+        form.append('text', data.text)
+        form.append('image', image)
         axios
-            .post('http://127.0.0.1:8000/api/news/', {
-                email: data.email,
-                author: data.author,
-                header: data.header,
-                lead: data.lead,
-                text: data.text
+            .post("http://127.0.0.1:8000/api/news/", form, {
+                headers: {
+                    'content-type': 'application/json'
+                }
             })
             .then((res) => console.log(res));
     };
@@ -105,6 +135,20 @@ const PostPage = () => {
                 <Button type="submit" disabled={error.email}>
                     SEND
                 </Button>
+                <input
+                    required
+                    className="disabledInput"
+                    accept="image/*"
+                    id="icon-button-file"
+                    type="file"
+                    onChange={handleImage}
+                />
+                <label htmlFor="icon-button-file">
+                    <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                    </IconButton>
+                </label>
+                <InputText />
             </form>
         </div>
     );

@@ -6,7 +6,7 @@ class NewsSerializer(serializers.ModelSerializer):
     """Serializer for News"""
     class Meta:
         model = models.News
-        fields = ('id', 'email', 'author', 'header', 'lead', 'text')
+        fields = ('id', 'email', 'author', 'header', 'lead', 'text', 'image')
 
     def create(self, validated_data):
         news = models.News.objects.create_news(
@@ -15,6 +15,7 @@ class NewsSerializer(serializers.ModelSerializer):
             header=validated_data['header'],
             text=validated_data['text'],
             lead=validated_data['lead'],
+            image=validated_data['image'],
             public=False
         )
 

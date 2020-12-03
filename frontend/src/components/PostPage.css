@@ -23,3 +23,6 @@
     margin: 10px;
     background-color: #106adf;
 }
+.disabledInput {
+    display: none;
+}
