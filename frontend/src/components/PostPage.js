@@ -19,8 +19,7 @@ const PostPage = () => {
     const [error, setError] = useState({
         email: false
     })
-    const [image, setImage] = useState([])
-    console.log(image.length)
+    const [image, setImage] = useState(null)
 
     const handleChange = (event) => {
         const value = event.target.value
@@ -47,12 +46,12 @@ const PostPage = () => {
     }
     const handleImage = (event) => {
         const image = event.target.files[0]
-        console.log(image.name)
         setImage(image)
+        console.log(image)
     }
 
     const InputText = () => {
-        if (image.length === 0) {
+        if (image === null) {
             return (
                 <label>
                     Lisää kuva uutiseesi.
@@ -75,7 +74,8 @@ const PostPage = () => {
                 author: data.author,
                 header: data.header,
                 lead: data.lead,
-                text: data.text
+                text: data.text,
+                image: image,
             })
             .then(res => console.log(res))
     }

@@ -23,10 +23,8 @@ from verkkomedia_api import views
 router = DefaultRouter()
 router.register('news', views.NewsViewSet)
 router.register('profiles', views.ProfileViewSet)
-router.register('images', views.ImageViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
