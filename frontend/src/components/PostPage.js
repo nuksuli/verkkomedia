@@ -85,6 +85,14 @@ const PostPage = () => {
                 }
             })
             .then((res) => console.log(res));
+        setData({
+            author: '',
+            email: '',
+            header: '',
+            lead: '',
+            text: ''
+        })
+        setImage(null)
     };
     return (
         <div className="postpage">
@@ -95,6 +103,7 @@ const PostPage = () => {
                     placeholder="Kirjoittaja"
                     variant="outlined"
                     onChange={handleChange}
+                    value={data.author}
                 ></Input>
                 <Input
                     placeholder="Sähköposti"
@@ -102,6 +111,7 @@ const PostPage = () => {
                     error={error.email}
                     name="email"
                     onChange={handleChange}
+                    value={data.email}
                 ></Input>
                 <br />
                 <Input
@@ -109,6 +119,7 @@ const PostPage = () => {
                     required
                     name="header"
                     onChange={handleChange}
+                    value={data.header}
                 ></Input>
                 <br />
                 <Input
@@ -117,6 +128,7 @@ const PostPage = () => {
                     name="lead"
                     onChange={handleChange}
                     style={{ width: '50vh' }}
+                    value={data.lead}
                 ></Input>
                 <br />
                 <TextField
@@ -130,6 +142,7 @@ const PostPage = () => {
                     rows={30}
                     label="Teksti"
                     variant="outlined"
+                    value={data.text}
                 />
                 <br />
                 <Button type="submit" disabled={error.email}>

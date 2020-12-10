@@ -5,6 +5,10 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@mdi/font": "^5.8.55",
+    "@mdi/js": "^5.8.55",
+    "@mdi/react": "^1.4.0",
     "axios": "^0.21.0",
     "cra-template": "1.0.3",
     "dotenv": "^8.2.0",

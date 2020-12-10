@@ -23,6 +23,7 @@ from verkkomedia_api import views
 router = DefaultRouter()
 router.register('news', views.NewsViewSet)
 router.register('profiles', views.ProfileViewSet)
+router.register('reviews', views.ReviewViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
