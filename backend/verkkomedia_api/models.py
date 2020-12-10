@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django.shortcuts import get_object_or_404
 
 
 class UserProfileManager(BaseUserManager):
@@ -91,7 +92,7 @@ class News(models.Model):
     lead = models.CharField(max_length=255)
     text = models.CharField(max_length=10000)
     public = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default="/")
 
     REQUIRED_FIELDS = ['author']
     USERNAME_FIELD = 'email'
@@ -109,3 +110,36 @@ class News(models.Model):
     def __str__(self):
         """Return string representation of name"""
         return self.email
+
+
+class ReviewManager(models.Manager):
+    """Manager for adding comments to news"""
+
+    def create_review(self, username, text, news_id):
+        if not username:
+            raise ValueError("Username not defined!")
+        if not text:
+            raise ValueError("Text not defined!")
+        if not news_id:
+            raise ValueError("News not defined")
+
+        obj = get_object_or_404(News, id=news_id)
+
+        review = self.model(username=username, text=text,
+                            news_parent=obj, news_id=news_id)
+        review.save(using=self._db)
+
+        return review
+
+
+class Review(models.Model):
+    """Database model for comments"""
+    username = models.CharField(max_length=20)
+    text = models.CharField(max_length=1000)
+    news_id = models.IntegerField(default=0)
+    news_parent = models.ForeignKey(News, on_delete=models.CASCADE)
+
+    REQUIRED_FIELDS = ['username', 'text', 'news']
+    USERNAME_FIELD = 'username'
+
+    objects = ReviewManager()

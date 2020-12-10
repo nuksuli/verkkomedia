@@ -31,6 +31,22 @@ class NewsSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
 
+class ReviewSerializer(serializers.ModelSerializer):
+    """Serializer for comments"""
+    class Meta:
+        model = models.Review
+        fields = ('id', 'username', 'text', 'news_id')
+
+    def create(self, validated_data):
+        review = models.Review.objects.create_review(
+            username=validated_data['username'],
+            text=validated_data['text'],
+            news_id=validated_data['news_id']
+        )
+
+        return review
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     """Serializers a user profile object"""
     class Meta:
