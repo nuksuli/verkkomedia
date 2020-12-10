@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { CardActions, CardHeader, Collapse, CardMedia, TextField, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Rating from '@material-ui/lab/Rating';
+import CommentCard from "./CommentCard.js"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,14 +53,15 @@ const useStyles = makeStyles((theme) => ({
 
 const NewsPage = () => {
     const [news, setNews] = useState([]);
+    const [comments, setComments] = useState([])
     const { id } = useParams();
     const classes = useStyles();
     const [expanded, setExpanded] = useState(true);
     const [review, setReview] = useState({
         username: "",
         text: "",
+        news_id: id,
         rating: 0,
-        news: id
     })
 
     useEffect(() => {
@@ -75,6 +77,19 @@ const NewsPage = () => {
         } catch (e) {
             console.log(e);
         }
+        try {
+            async function fetchComments() {
+                let response = await axios.get(
+                    `http://127.0.0.1:8000/api/reviews/?news_id=${id}`
+                )
+                response = await response;
+                setComments(response.data)
+            }
+            fetchComments()
+        }
+        catch (e) {
+            console.log(e);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -88,15 +103,30 @@ const NewsPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(review)
+        axios.post("http://127.0.0.1:8000/api/reviews/", review)
+            .then(res => console.log(res))
+        try {
+            async function fetchComments() {
+                let response = await axios.get(
+                    `http://127.0.0.1:8000/api/reviews/?news_id=${id}`
+                )
+                response = await response;
+                setComments(response.data)
+            }
+            fetchComments()
+        }
+        catch (e) {
+            console.log(e);
+        }
         setReview({
             username: "",
             text: "",
-            rating: 0
+            news_id: { id },
+            rating: 0,
         })
 
     }
-
+    console.log(comments)
     return (
         <div>
             <Card className={classes.root}>
@@ -166,6 +196,7 @@ const NewsPage = () => {
                         Lähetä
                     </Button>
                     <Rating
+                        name="newsRater"
                         required
                         className={classes.star}
                         value={review.rating}
@@ -178,34 +209,18 @@ const NewsPage = () => {
                     />
                 </form>
             </div>
-            <div style={{ width: "50%", display: "inline", float: "right", position: "absolute" }}>
-                <Card
-                    variant="outlined"
-                    className={classes.textField}
-                >
-                    <div style={{ display: "flex", justifyContent: "space-between", flexDirection: "row", marginRight: "8px" }}>
-                        <CardHeader
-                            title="Käyttäjänimi"
-                            style={{ width: "100%", paddingRight: "0px" }}
-                        />
-                        <div style={{ width: "100%", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
-                            <Rating
-                                readOnly
-                                value={2}
-                            />
-                        </div>
-                    </div>
-                    <CardContent
-                        style={{
-                            textAlign: "justify", display: "block", margin: "8px", position: "relative"
-                        }}
-                    >
-                        <Typography paragraph>
-                            Jotain täytettä tähän korttiin, että näkee miten toimiin :) Jotain täytettä tähän korttiin, että näkee miten toimiin :) Jotain täytettä tähän korttiin, että näkee miten toimiin :) Jotain täytettä tähän korttiin, että näkee miten toimiin :)
-                            </Typography>
-                    </CardContent>
-                </Card>
-            </div>
+            {comments
+                .slice(0)
+                .reverse()
+                .map((comment) => (
+                    <CommentCard
+                        key={comment.id}
+                        username={comment.username}
+                        rating={comment.rating}
+                        text={comment.text}
+                        model={classes.textField}
+                    />
+                ))}
         </div >
     );
 };

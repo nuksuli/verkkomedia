@@ -35,13 +35,14 @@ class ReviewSerializer(serializers.ModelSerializer):
     """Serializer for comments"""
     class Meta:
         model = models.Review
-        fields = ('id', 'username', 'text', 'news_id')
+        fields = ('id', 'username', 'text', 'news_id', 'rating')
 
     def create(self, validated_data):
         review = models.Review.objects.create_review(
             username=validated_data['username'],
             text=validated_data['text'],
-            news_id=validated_data['news_id']
+            news_id=validated_data['news_id'],
+            rating=validated_data['rating']
         )
 
         return review

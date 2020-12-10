@@ -115,7 +115,7 @@ class News(models.Model):
 class ReviewManager(models.Manager):
     """Manager for adding comments to news"""
 
-    def create_review(self, username, text, news_id):
+    def create_review(self, username, text, news_id, rating):
         if not username:
             raise ValueError("Username not defined!")
         if not text:
@@ -126,7 +126,7 @@ class ReviewManager(models.Manager):
         obj = get_object_or_404(News, id=news_id)
 
         review = self.model(username=username, text=text,
-                            news_parent=obj, news_id=news_id)
+                            news_parent=obj, news_id=news_id, rating=rating)
         review.save(using=self._db)
 
         return review
@@ -138,6 +138,7 @@ class Review(models.Model):
     text = models.CharField(max_length=1000)
     news_id = models.IntegerField(default=0)
     news_parent = models.ForeignKey(News, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
 
     REQUIRED_FIELDS = ['username', 'text', 'news']
     USERNAME_FIELD = 'username'
