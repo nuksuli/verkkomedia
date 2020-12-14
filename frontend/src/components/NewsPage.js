@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
@@ -104,20 +104,7 @@ const NewsPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post("http://127.0.0.1:8000/api/reviews/", review)
-            .then(res => console.log(res))
-        try {
-            async function fetchComments() {
-                let response = await axios.get(
-                    `http://127.0.0.1:8000/api/reviews/?news_id=${id}`
-                )
-                response = await response;
-                setComments(response.data)
-            }
-            fetchComments()
-        }
-        catch (e) {
-            console.log(e);
-        }
+        setComments(comments.concat(review))
         setReview({
             username: "",
             text: "",
@@ -126,7 +113,6 @@ const NewsPage = () => {
         })
 
     }
-    console.log(comments)
     return (
         <div>
             <Card className={classes.root}>
@@ -212,9 +198,9 @@ const NewsPage = () => {
             {comments
                 .slice(0)
                 .reverse()
-                .map((comment) => (
+                .map((comment, i) => (
                     <CommentCard
-                        key={comment.id}
+                        key={i}
                         username={comment.username}
                         rating={comment.rating}
                         text={comment.text}

@@ -28,7 +28,6 @@ const PostPage = () => {
             ...data,
             [name]: value
         });
-        console.log(data);
         if (name === 'email') {
             if (
                 value.match(
@@ -84,7 +83,14 @@ const PostPage = () => {
                     'content-type': 'application/json'
                 }
             })
-            .then((res) => console.log(res));
+            .then((res) => {
+                if (res.ok) {
+                    console.log("Virhe lähetettäessä uutista")
+                }
+                else {
+                    window.location.assign("/")
+                }
+            });
         setData({
             author: '',
             email: '',
