@@ -144,3 +144,7 @@ class Review(models.Model):
     USERNAME_FIELD = 'username'
 
     objects = ReviewManager()
+
+    def __str__(self):
+        """Return string representation of name"""
+        return self.username
