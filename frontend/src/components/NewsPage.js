@@ -162,7 +162,7 @@ const NewsPage = () => {
                                 username: event.target.value
                             })
                         }}
-                    /><br />
+                    />
                     <TextField
                         value={review.text}
                         className={classes.textField}
@@ -177,7 +177,7 @@ const NewsPage = () => {
                                 text: event.target.value
                             })
                         }}
-                    /><br />
+                    />
                     <Button className={classes.button} type="submit">
                         Lähetä
                     </Button>
