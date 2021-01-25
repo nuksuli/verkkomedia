@@ -3,9 +3,11 @@ import './middlebar.css';
 import NewsCard from './NewsCard';
 
 const Middlebar = ({ data }) => {
-    return (
-        <div className="middlebar">
-            {data
+
+    const Data = () => {
+        return (
+
+            data
                 .slice(0)
                 .reverse()
                 .map((news) => (
@@ -16,7 +18,12 @@ const Middlebar = ({ data }) => {
                         ingress={news.lead}
                         image={news.image}
                     />
-                ))}
+                ))
+        )
+    }
+    return (
+        <div className="middlebar">
+            <Data />
         </div>
     );
 };

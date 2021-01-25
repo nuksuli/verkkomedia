@@ -103,54 +103,58 @@ const PostPage = () => {
     return (
         <div className="postpage">
             <form autoComplete="off" onSubmit={handlePost}>
-                <Input
-                    name="author"
-                    required
-                    placeholder="Kirjoittaja"
-                    variant="outlined"
-                    onChange={handleChange}
-                    value={data.author}
-                ></Input>
-                <Input
-                    placeholder="Sähköposti"
-                    required
-                    error={error.email}
-                    name="email"
-                    onChange={handleChange}
-                    value={data.email}
-                ></Input>
-                <br />
-                <Input
-                    placeholder="Otsikko"
-                    required
-                    name="header"
-                    onChange={handleChange}
-                    value={data.header}
-                ></Input>
-                <br />
-                <Input
-                    placeholder="Ingressi"
-                    required
-                    name="lead"
-                    onChange={handleChange}
-                    style={{ width: '50vh' }}
-                    value={data.lead}
-                ></Input>
-                <br />
-                <TextField
-                    required
-                    name="text"
-                    onChange={handleChange}
-                    style={{ marginTop: '20px' }}
-                    className="textfield"
-                    placeholder="Syötä tähän uutisesi leipäteksti"
-                    multiline
-                    rows={30}
-                    label="Teksti"
-                    variant="outlined"
-                    value={data.text}
-                />
-                <br />
+                <div width="100%">
+                    <Input
+                        name="author"
+                        required
+                        placeholder="Kirjoittaja"
+                        variant="outlined"
+                        onChange={handleChange}
+                        value={data.author}
+                    ></Input>
+                    <Input
+                        placeholder="Sähköposti"
+                        required
+                        error={error.email}
+                        name="email"
+                        onChange={handleChange}
+                        value={data.email}
+                    ></Input>
+                </div>
+                <div width="100%">
+                    <Input
+                        placeholder="Otsikko"
+                        required
+                        name="header"
+                        onChange={handleChange}
+                        value={data.header}
+                    ></Input>
+                </div>
+                <div width="100%">
+                    <Input
+                        placeholder="Ingressi"
+                        required
+                        name="lead"
+                        onChange={handleChange}
+                        style={{ width: '50vh' }}
+                        value={data.lead}
+                    ></Input>
+                </div>
+                <div width="100%">
+                    <TextField
+                        required
+                        name="text"
+                        onChange={handleChange}
+                        style={{ marginTop: '20px' }}
+                        className="textfield"
+                        placeholder="Syötä tähän uutisesi leipäteksti"
+                        multiline
+                        rows={30}
+                        label="Teksti"
+                        variant="outlined"
+                        value={data.text}
+                    />
+                </div>
                 <Button type="submit" disabled={error.email}>
                     SEND
                 </Button>
