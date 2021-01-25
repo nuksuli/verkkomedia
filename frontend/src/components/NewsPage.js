@@ -113,6 +113,30 @@ const NewsPage = () => {
         })
 
     }
+    const handleComment = (event) => {
+        const name = event.target.name
+        const value = event.target.value
+        setReview({
+            ...review,
+            [name]: value
+        })
+    }
+    const Comments = () => {
+        return (
+            comments
+                .slice(0)
+                .reverse()
+                .map((comment, i) => (
+                    <CommentCard
+                        key={i}
+                        username={comment.username}
+                        rating={comment.rating}
+                        text={comment.text}
+                        model={classes.textField}
+                    />
+                ))
+        )
+    }
     return (
         <div>
             <Card className={classes.root}>
@@ -155,13 +179,9 @@ const NewsPage = () => {
                         required
                         variant="outlined"
                         label="Nimimerkki"
+                        name="username"
                         value={review.username}
-                        onChange={(event) => {
-                            setReview({
-                                ...review,
-                                username: event.target.value
-                            })
-                        }}
+                        onChange={handleComment}
                     />
                     <TextField
                         value={review.text}
@@ -169,44 +189,24 @@ const NewsPage = () => {
                         variant="outlined"
                         required
                         label="Kommentti"
+                        name="text"
                         multiline
                         rows={4}
-                        onChange={(event) => {
-                            setReview({
-                                ...review,
-                                text: event.target.value
-                            })
-                        }}
+                        onChange={handleComment}
                     />
                     <Button className={classes.button} type="submit">
                         Lähetä
                     </Button>
                     <Rating
-                        name="newsRater"
+                        name="rating"
                         required
                         className={classes.star}
-                        value={review.rating}
-                        onChange={(event, value) => {
-                            setReview({
-                                ...review,
-                                rating: value
-                            })
-                        }}
+                        value={parseInt(review.rating)}
+                        onChange={handleComment}
                     />
                 </form>
             </div>
-            {comments
-                .slice(0)
-                .reverse()
-                .map((comment, i) => (
-                    <CommentCard
-                        key={i}
-                        username={comment.username}
-                        rating={comment.rating}
-                        text={comment.text}
-                        model={classes.textField}
-                    />
-                ))}
+            <Comments />
         </div >
     );
 };
