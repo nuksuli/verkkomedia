@@ -3,6 +3,7 @@ import Topbar from './components/Topbar';
 import Content from './components/Content';
 import NewsPage from './components/NewsPage.js';
 import PostPage from './components/PostPage.js';
+import LoginPage from './components/LoginPage.js'
 import axios from 'axios';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -37,6 +38,9 @@ const App = () => {
                 </Route>
                 <Route path="/post">
                     <PostPage />
+                </Route>
+                <Route path="/login">
+                    <LoginPage />
                 </Route>
             </Switch>
         </Router>

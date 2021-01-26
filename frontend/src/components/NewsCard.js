@@ -1,7 +1,6 @@
-import Card from '@material-ui/core/Card';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles, CardMedia, CardHeader } from '@material-ui/core';
+import { makeStyles, CardMedia, CardHeader, Card } from '@material-ui/core';
 import './link.css';
 
 const useStyles = makeStyles({
