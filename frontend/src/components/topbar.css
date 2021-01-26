@@ -1,7 +1,7 @@
 .topbar {
     overflow: hidden;
     float: top;
-    height: 10vh;
+    height: 10%;
     background-color: #20232a;
     text-align: center;
 }
@@ -10,8 +10,6 @@
     display: inline-block;
 }
 .topbar Button {
-    right: 0;
-    margin: 10px;
-    margin-top: 20px;
+    margin: 2%;
     position: absolute;
 }
