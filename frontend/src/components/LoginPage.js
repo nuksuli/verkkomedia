@@ -1,29 +1,43 @@
-import React, { useState } from 'react'
-import { Card, makeStyles, CardHeader, TextField, Button } from '@material-ui/core'
+import React, { useState } from 'react';
+import {
+    Card,
+    makeStyles,
+    CardHeader,
+    TextField,
+    Button
+} from '@material-ui/core';
+import Calendar from 'react-calendar';
 const useStyles = makeStyles({
     root: {
-        width: "100%"
+        width: '100%'
     },
     loginCard: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "5%",
-        textAlign: "center"
+        width: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '5%',
+        textAlign: 'center'
     },
     textField: {
-        marginBottom: "3%",
-        marginLeft: "2%",
-        marginRight: "2%"
+        marginBottom: '3%',
+        marginLeft: '2%',
+        marginRight: '2%'
     },
     loginButton: {
-        marginBottom: "5%"
+        marginBottom: '5%'
+    },
+    fullDay: {
+        backgroundColor: 'red'
     }
-})
+});
 
 const LoginPage = () => {
-    const [showPassword, setShowPassword] = useState(false)
-    const classes = useStyles()
+    const [showPassword, setShowPassword] = useState(false);
+    const classes = useStyles();
+    const tileDisabled = ({ date, view }) =>
+        date.getDate() === 10 && date.getMonth() === 0;
+    const fileClassName = ({ date, view }) =>
+        date.getDay() === 1 ? classes.fullDay : null;
     return (
         <div>
             <Card className={classes.loginCard}>
@@ -50,12 +64,16 @@ const LoginPage = () => {
                             variant="contained"
                         >
                             Login
-                    </Button>
+                        </Button>
                     </div>
                 </form>
             </Card>
+            <Calendar
+                tileDisabled={tileDisabled}
+                tileClassName={fileClassName}
+            />
         </div>
-    )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;
